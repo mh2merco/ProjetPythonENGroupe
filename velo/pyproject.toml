@@ -1,17 +1,22 @@
 [project]
 name = "velo"
 version = "0.1.0"
-description = "Add your description here"
+description = "Outil en ligne de commande pour les vélos en libre-service (GBFS)"
 readme = "README.md"
-authors = [
-    { name = "mh2merco", email = "mh2ndir@gmail.com" }
-]
-requires-python = ">=3.14"
-dependencies = []
+requires-python = ">=3.11"
+dependencies = ["pyyaml>=6.0"]
 
 [project.scripts]
-velo = "velo:main"
+velo = "velo.cli:main"
 
-[build-system]
-requires = ["uv_build>=0.13.9,<0.14.0"]
-build-backend = "uv_build"
+[dependency-groups]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
