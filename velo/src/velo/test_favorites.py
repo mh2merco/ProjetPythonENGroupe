@@ -46,4 +46,4 @@ def test_rows_show_state(tmp_path, config):
     url = config["network"]["gbfs_url"]
     download_rare_feeds(url, tmp_path)
     rows = favorite_rows(["42", "43"], load_stations(tmp_path), fetch_snapshot(url), 2, 2)
-    assert rows == [["42", "Vauban", 3, 17, ""], ["43", "Gare Lille Flandres", 0, 40, "vide"]]git add .
+    assert rows == [["42", "Vauban", 3, 17, ""], ["43", "Gare Lille Flandres", 0, 40, "vide"]]
