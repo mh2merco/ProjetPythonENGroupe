@@ -14,13 +14,15 @@ logger = logging.getLogger(__name__)
 
 RARE_FEEDS = ("system_information", "station_information", "vehicle_types")
 TIMEOUT_SECONDS = 15
+HEADERS = {"User-Agent": "velo/0.1"}
 
 
 def fetch_json(url: str) -> dict[str, Any]:
     """Télécharge une URL et renvoie le JSON, après une première vérification."""
     logger.debug("Téléchargement de %s", url)
+    request = urllib.request.Request(url, headers=HEADERS)
     try:
-        with urllib.request.urlopen(url, timeout=TIMEOUT_SECONDS) as response:
+        with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
             content = json.loads(response.read().decode("utf-8"))
     except (OSError, ValueError) as exc:
         raise VeloError(f"réseau indisponible ou réponse illisible : {url}") from exc
